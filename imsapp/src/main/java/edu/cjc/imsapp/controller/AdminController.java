@@ -85,4 +85,19 @@ public class AdminController {
 		m.addAttribute("data",list);
 		return "adminscreen";
 	}
+	@RequestMapping("/batch")
+	public String onBatchChange(@RequestParam("id") int id,Model m) 
+	{
+		Student st= ss.getSingleStudent(id);
+		List<Student>list=ss.getAllStudents();
+		m.addAttribute("st", st);
+		m.addAttribute("data", list);
+		return "batch";
+	}
+	@RequestMapping("/batchshift")
+	public String payfees(@RequestParam("studentid") int studentid,@RequestParam("batchNumber") String batchNumber,Model m ) {
+		List<Student>list=ss.updateStudentBatch(studentid,batchNumber);
+		m.addAttribute("data", list);
+		return "adminscreen";
+	}
 }
